@@ -16,10 +16,38 @@ function App() {
   const [errorMsg, setErrorMsg] = useState(
     "Данные введены не корректно, проверьте."
   );
-  function btnClick() {}
+  function btnClick() {
+    const lengths = [];
+    if (!gilsaInput.length) {
+      showError("Строка ввода длин гильз пуста.");
+      return;
+    }
+    if (!siemInput.length) {
+      showError("Строка ввода длин съёма пуста.");
+      return;
+    }
+    for (const length of gilsaInput.split(" ")) {
+      if (!isFinite(+length)) {
+        showError(
+          `некорректное значение ${length}. Для указания дробной части используй точку.`
+        );
+      }
+    }
+  }
+  function showError(msg: string, errorDuration: number = 5) {
+    setIsError(true);
+    setErrorMsg(msg);
+    setTimeout(() => {
+      setIsError(false);
+    }, errorDuration * 1000);
+  }
   return (
     <FormGroup sx={{ padding: "15px" }}>
-      {isError && <Typography>{errorMsg}</Typography>}
+      {isError && (
+        <Typography color="red" fontSize={"2rem"}>
+          {errorMsg}
+        </Typography>
+      )}
       <FormControl sx={{ marginBottom: "15px" }}>
         <InputLabel htmlFor="gilsaInput">Длины гильз</InputLabel>
         <Input
