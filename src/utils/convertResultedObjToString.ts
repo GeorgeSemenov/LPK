@@ -7,6 +7,10 @@ export default function convertResultedObjToAnswer(
 ): string {
   let resultedString = "";
   //создай массив свойств объекта - keys
-  //преобразуй массив чтобы в начале было значения близкие к limit используй функцию closestToLimitFirst
+  //преобразуй массив чтобы в начале было значения близкие к limit используй функцию arrangeFromMaxToMin
+  //// for(i=0;i<irogarrlength;i+;)
+  ////// for(i=0;i<irogarrlength;i+;)
+  /////// находится максимальное значение
+  ////
   return resultedString;
 }
