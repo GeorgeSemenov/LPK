@@ -26,13 +26,6 @@ function App() {
       showError("Строка ввода длин съёма пуста.");
       return;
     }
-    for (const length of gilsaInput.split(" ")) {
-      if (!isFinite(+length)) {
-        showError(
-          `некорректное значение ${length}. Для указания дробной части используй точку.`
-        );
-      }
-    }
   }
   function showError(msg: string, errorDuration: number = 5) {
     setIsError(true);
