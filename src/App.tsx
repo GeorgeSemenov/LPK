@@ -16,7 +16,9 @@ function App() {
   const [errorMsg, setErrorMsg] = useState(
     "Данные введены не корректно, проверьте."
   );
+  const [resultMsg, setResultMsg] = useState("");
   function btnClick() {
+    setResultMsg("")
     const lengths = [];
     if (!gilsaInput.length) {
       showError("Строка ввода длин гильз пуста.");
@@ -26,6 +28,10 @@ function App() {
       showError("Строка ввода длин съёма пуста.");
       return;
     }
+    //конвертор строку в массив чисел
+    //конвертор массив в резултобж
+    //конвертируй резултобж в ответный массив
+    //ответный массив положи в setresultmsg
   }
   function showError(msg: string, errorDuration: number = 5) {
     setIsError(true);
