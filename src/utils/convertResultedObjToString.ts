@@ -6,5 +6,7 @@ export default function convertResultedObjToAnswer(
   resultedObj: IResultedObj
 ): string {
   let resultedString = "";
+  //создай массив свойств объекта - keys
+  //преобразуй массив чтобы в начале было значения близкие к limit используй функцию closestToLimitFirst
   return resultedString;
 }
