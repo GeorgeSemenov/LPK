@@ -1,5 +1,5 @@
 import { constants } from "../consts";
-export default function convertNumbersWithMultypliesToArr(
+export default function convertStringToNumbersWithMultypliesArr(
   str: string,
   showError: (msg: string, errorDuration?: number) => void
 ): number[] {

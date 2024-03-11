@@ -1,7 +1,7 @@
 import arSum from "./arSum";
-import { IResultedObj } from "../interfaces";
+import { ISumsObj } from "../interfaces";
 
-export default function getArSumsUnderLimits(
+export default function convertArrToSumsObj(
   {
     origArr,
     limit,
@@ -10,7 +10,7 @@ export default function getArSumsUnderLimits(
     limit: number;
   },
   showErrFunc?: (msg: string, errorDuration?: number) => void
-): IResultedObj {
+): ISumsObj {
   if (!origArr.length) {
     if (showErrFunc) {
       showErrFunc("error in getArSumsUnderLimits, origArr is empty ");
@@ -19,22 +19,22 @@ export default function getArSumsUnderLimits(
     return {};
   }
   const arr: number[] = Object.assign([], origArr);
-  const resultedObj = {};
+  const sumsObj = {};
   while (arr.length) {
-    getSumsToTheEndOfArr({ origArr: arr, limit, resultedObj });
+    getSumsToTheEndOfArr({ origArr: arr, limit, sumsObj });
     arr.shift();
   }
-  return resultedObj;
+  return sumsObj;
 }
 
 function getSumsToTheEndOfArr(
   {
     origArr,
-    resultedObj,
+    sumsObj,
     limit,
   }: {
     origArr: number[];
-    resultedObj: IResultedObj;
+    sumsObj: ISumsObj;
     limit: number;
   },
   showErrFunc?: (msg: string, errorDuration?: number) => void
@@ -65,10 +65,10 @@ function getSumsToTheEndOfArr(
       if (sum > limit) {
         continue;
       }
-      if (!(sum in resultedObj)) {
-        resultedObj[sum] = [];
+      if (!(sum in sumsObj)) {
+        sumsObj[sum] = [];
       }
-      resultedObj[sum].push([...leftArr, numb]);
+      sumsObj[sum].push([...leftArr, numb]);
     }
   }
 }

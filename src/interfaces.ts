@@ -1,3 +1,3 @@
-export interface IResultedObj {
+export interface ISumsObj {
   [key: number]: number[][];
 }

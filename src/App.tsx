@@ -8,6 +8,9 @@ import {
   InputLabel,
   Typography,
 } from "@mui/material";
+import convertStringToNumbersWithMultypliesArr from "./utils/convertStringToNumbersWithMultypliesArr";
+import convertArrToSumsObj from "./utils/convertArrToSumsObj";
+import convertSumsObjToAnswer from "./utils/convertSumsObjToAnswer";
 
 function App() {
   const [gilsaInput, setGilsaInput] = useState("");
@@ -18,8 +21,6 @@ function App() {
   );
   const [resultMsg, setResultMsg] = useState("");
   function btnClick() {
-    setResultMsg("")
-    const lengths = [];
     if (!gilsaInput.length) {
       showError("Строка ввода длин гильз пуста.");
       return;
@@ -28,10 +29,21 @@ function App() {
       showError("Строка ввода длин съёма пуста.");
       return;
     }
-    //конвертор строку в массив чисел
-    //конвертор массив в резултобж
-    //конвертируй резултобж в ответный массив
-    //ответный массив положи в setresultmsg
+    if (isFinite(+siemInput)) {
+      showError(
+        "Строка ввода длин съёма должна содержать число. Если число дробное - оно должно быть написано через точку."
+      );
+      return;
+    }
+    const numberArr = convertStringToNumbersWithMultypliesArr(
+      gilsaInput,
+      showError
+    );
+    const sumsObj = convertArrToSumsObj({
+      origArr: numberArr,
+      limit: +siemInput,
+    });
+    setResultMsg(convertSumsObjToAnswer(sumsObj));
   }
   function showError(msg: string, errorDuration: number = 5) {
     setIsError(true);
@@ -79,6 +91,7 @@ function App() {
       <Typography component={"h3"} textAlign={"center"}>
         Тут ведут расчёт суровые работники лесопромышленной области.
       </Typography>
+      {resultMsg.length && <Typography>{resultMsg}</Typography>}
       <img
         alt="Знойный лесоруб"
         src="https://www.veseloeradio.ru/vardata/modules/news/files/1/2453/news_file_2453_599fca86a29b4.jpg"
