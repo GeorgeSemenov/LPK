@@ -11,7 +11,7 @@ export default function convertResultedObjToAnswer(
   //// for(i=0;i<irogarrlength;i+;)
   ////// for(i=0;i<irogarrlength;i+;)
   /////// находится максимальное значение
-  keys = arrangeFromMaxToMin(resulпреобразуй массив чтобы в начале было значения близкие к limit используй функцию arrangeFromMaxToMin
+  // keys = arrangeFromMaxToMin(resulпреобразуй массив чтобы в начале было значения близкие к limit используй функцию arrangeFromMaxToMin
   //// for(i=0;i<irogarrlength;i+;)
   ////// for(i=0;i<irogarrlength;i+;)
   /////// находится максимальное значение
