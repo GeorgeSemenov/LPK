@@ -37,9 +37,10 @@ export default function convertArrToSumsObj(
   ////// for(numbArr of sumsObj[sum])
   //////// copyOrigArr=[...origArr];
   //////// for(numb of numbArr)
-  //////// iforigArr.includes(numb))
-  ////////// 
-  ////////// if(!origArr.includes(numb))
+  //////// is arraysEqual()
+  //////// if copyr.includes(numb))
+  ////////// удалить это числа из копии
+  ////////// else(!origArr.includes(numb))
   //////////// break; delete numbArr
   //////////// if(!sumsObj[sum].length)
   ////////////// sumsObj[sum] delete, break// интересно понравится все циклов или один
