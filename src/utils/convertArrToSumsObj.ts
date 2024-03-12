@@ -31,6 +31,15 @@ export default function convertArrToSumsObj(
 
   //Убрать числа, котороые используются в больших суммах  логика проста -
   //одно число может использоваться во множестве сумм, нужно чтобы оно присутствовалло только в нибольшей сумме
+  // removeWrongSums(suns:number[], sumsObj, origArr)
+  //// for(const sum of sums)
+  ////// for(numbArr of sumsObj[sum])
+  //////// for(numb of numbArr)
+  ////////// if(!origArr.includes(numb))
+  //////////// break; delete numbArr
+  //////////// if(!sumsObj[sum].length)
+  ////////////// sumsObj[sum] delete
+  
   return sumsObj;
 }
 
