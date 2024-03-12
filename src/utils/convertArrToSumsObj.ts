@@ -66,7 +66,7 @@ function getSumsToTheEndOfArr(
     leftArr.push(leftItem);
     const leftArrSum = arSum(leftArr);
     if (leftArrSum > limit) {
-      break;
+      continue;
     }
     for (const numb of arr) {
       const sum = leftArrSum + numb;

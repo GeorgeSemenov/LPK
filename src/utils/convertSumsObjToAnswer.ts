@@ -31,5 +31,6 @@ function arrToString(arr: number[]) {
 
     str += multiplier > 1 ? `${number}*${multiplier} ` : `${number} `;
   }
+
   return str;
 }
