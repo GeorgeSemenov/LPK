@@ -33,12 +33,20 @@ export default function convertArrToSumsObj(
   //одно число может использоваться во множестве сумм, нужно чтобы оно присутствовалло только в нибольшей сумме
   // removeWrongSums(suns:number[], sumsObj, origArr)
   //// for(const sum of sums)
+  ////// if(!sumsObj[sum]) continue
   ////// for(numbArr of sumsObj[sum])
+  //////// copyOrigArr=[...origArr];
   //////// for(numb of numbArr)
+  //////// iforigArr.includes(numb))
+  ////////// 
   ////////// if(!origArr.includes(numb))
   //////////// break; delete numbArr
   //////////// if(!sumsObj[sum].length)
-  ////////////// sumsObj[sum] delete
+  ////////////// sumsObj[sum] delete, break// интересно понравится все циклов или один
+  //////// for(numb of numbArr)
+  ////////// index = origArr.indexof(numb)
+  ////////// origArr.splice(index,1)
+
   
   return sumsObj;
 }
