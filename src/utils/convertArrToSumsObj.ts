@@ -1,6 +1,7 @@
 import arSum from "./arSum";
 import { ISumsObj } from "../interfaces";
 import arrangeArrFromMaxToMin from "./arrangeArrFromMaxToMin";
+import removeWrongSums from "./removeWrongSums";
 
 export default function convertArrToSumsObj(
   {
@@ -29,26 +30,8 @@ export default function convertArrToSumsObj(
     Object.keys(sumsObj).map((item) => +item)
   ); //суммы объекта отсортированы от большего к меньшему
 
-  //Убрать числа, котороые используются в больших суммах  логика проста -
-  //одно число может использоваться во множестве сумм, нужно чтобы оно присутствовалло только в нибольшей сумме
-  // removeWrongSums(suns:number[], sumsObj, origArr)
-  //// for(const sum of sums)
-  ////// if(!sumsObj[sum]) continue
-  ////// for(numbArr of sumsObj[sum])
-  //////// copyOrigArr=[...origArr];
-  //////// for(numb of numbArr)
-  //////// is arraysEqual()
-  //////// if copyr.includes(numb))
-  ////////// удалить это числа из копии
-  ////////// else(!origArr.includes(numb))
-  //////////// break; delete numbArr
-  //////////// if(!sumsObj[sum].length)
-  ////////////// sumsObj[sum] delete, break// интересно понравится все циклов или один
-  //////// for(numb of numbArr)
-  ////////// index = origArr.indexof(numb)
-  ////////// origArr.splice(index,1)
+  removeWrongSums(keys, sumsObj, origArr);
 
-  
   return sumsObj;
 }
 
