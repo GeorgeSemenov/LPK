@@ -1,5 +1,6 @@
 import arSum from "./arSum";
 import { ISumsObj } from "../interfaces";
+import arrangeArrFromMaxToMin from "./arrangeArrFromMaxToMin";
 
 export default function convertArrToSumsObj(
   {
@@ -24,6 +25,12 @@ export default function convertArrToSumsObj(
     getSumsToTheEndOfArr({ origArr: arr, limit, sumsObj });
     arr.shift();
   }
+  const keys = arrangeArrFromMaxToMin(
+    Object.keys(sumsObj).map((item) => +item)
+  ); //суммы объекта отсортированы от большего к меньшему
+
+  //Убрать числа, котороые используются в больших суммах  логика проста -
+  //одно число может использоваться во множестве сумм, нужно чтобы оно присутствовалло только в нибольшей сумме
   return sumsObj;
 }
 

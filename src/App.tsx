@@ -29,18 +29,18 @@ function App() {
       showError("Строка ввода длин съёма пуста.");
       return;
     }
-    if (isFinite(+siemInput)) {
+    if (!isFinite(+siemInput)) {
       showError(
         "Строка ввода длин съёма должна содержать число. Если число дробное - оно должно быть написано через точку."
       );
       return;
     }
-    const numberArr = convertStringToNumbersWithMultypliesArr(
+    const numbersArr = convertStringToNumbersWithMultypliesArr(
       gilsaInput,
       showError
     );
     const sumsObj = convertArrToSumsObj({
-      origArr: numberArr,
+      origArr: numbersArr,
       limit: +siemInput,
     });
     setResultMsg(convertSumsObjToAnswer(sumsObj));
