@@ -54,7 +54,7 @@ function getSumsToTheEndOfArr(
     console.error("error in getSumsToTheEndOfArr, arr is empty");
     return {};
   }
-  const arr: number[] = Object.assign([], origArr);
+  const arr: number[] = [...origArr];
   //Мы перебираем основной массив arr - те числа, что уже были проссумированы - переходят в левый массив, те же что ещё не проссумированы - остаются в правом (обычный arr)
   const leftArr = [];
 
