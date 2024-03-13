@@ -20,7 +20,7 @@ function App() {
     "Данные введены не корректно, проверьте."
   );
   const [resultMsg, setResultMsg] = useState("");
-  function btnClick() {
+  function onSubmit() {
     if (!gilsaInput.length) {
       showError("Строка ввода длин гильз пуста.");
       return;
@@ -53,51 +53,53 @@ function App() {
     }, errorDuration * 1000);
   }
   return (
-    <FormGroup sx={{ padding: "15px" }}>
-      {isError && (
-        <Typography color="red" fontSize={"2rem"}>
-          {errorMsg}
+    <form
+      onSubmit={() => {
+        onSubmit();
+      }}
+    >
+      <FormGroup sx={{ padding: "15px" }}>
+        {isError && (
+          <Typography color="red" fontSize={"2rem"}>
+            {errorMsg}
+          </Typography>
+        )}
+        <FormControl sx={{ marginBottom: "15px" }}>
+          <InputLabel htmlFor="gilsaInput">Длины гильз</InputLabel>
+          <Input
+            placeholder="Введи данные через пробел"
+            id="gilsaInput"
+            onChange={(e) => {
+              setGilsaInput(e.target.value);
+            }}
+            value={gilsaInput}
+          />
+        </FormControl>
+        <FormControl sx={{ marginBottom: "15px" }}>
+          <InputLabel htmlFor="siemInput">Длина сьёма</InputLabel>
+          <Input
+            placeholder="8400"
+            id="siemInput"
+            onChange={(e) => {
+              setSiemInput(e.target.value);
+            }}
+            value={siemInput}
+          />
+        </FormControl>
+        <Button variant="contained" sx={{ marginBottom: "15px" }} type="submit">
+          Найти подходящую сумму
+        </Button>
+        <Typography component={"h3"} textAlign={"center"}>
+          Тут ведут расчёт суровые работники лесопромышленной области.
         </Typography>
-      )}
-      <FormControl sx={{ marginBottom: "15px" }}>
-        <InputLabel htmlFor="gilsaInput">Длины гильз</InputLabel>
-        <Input
-          placeholder="Введи данные через пробел"
-          id="gilsaInput"
-          onChange={(e) => {
-            setGilsaInput(e.target.value);
-          }}
-          value={gilsaInput}
+        {resultMsg.length && <Typography>{resultMsg}</Typography>}
+        <img
+          alt="Знойный лесоруб"
+          src="https://www.veseloeradio.ru/vardata/modules/news/files/1/2453/news_file_2453_599fca86a29b4.jpg"
+          width="100%"
         />
-      </FormControl>
-      <FormControl sx={{ marginBottom: "15px" }}>
-        <InputLabel htmlFor="siemInput">Длина сьёма</InputLabel>
-        <Input
-          placeholder="8400"
-          id="siemInput"
-          onChange={(e) => {
-            setSiemInput(e.target.value);
-          }}
-          value={siemInput}
-        />
-      </FormControl>
-      <Button
-        variant="contained"
-        sx={{ marginBottom: "15px" }}
-        onClick={btnClick}
-      >
-        Найти подходящую сумму
-      </Button>
-      <Typography component={"h3"} textAlign={"center"}>
-        Тут ведут расчёт суровые работники лесопромышленной области.
-      </Typography>
-      {resultMsg.length && <Typography>{resultMsg}</Typography>}
-      <img
-        alt="Знойный лесоруб"
-        src="https://www.veseloeradio.ru/vardata/modules/news/files/1/2453/news_file_2453_599fca86a29b4.jpg"
-        width="100%"
-      />
-    </FormGroup>
+      </FormGroup>
+    </form>
   );
 }
 
