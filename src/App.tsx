@@ -91,11 +91,6 @@ function App() {
           Тут ведут расчёт суровые работники лесопромышленной области.
         </Typography>
         <AnswerField sumsObj={sumsObj} />
-        <img
-          alt="Знойный лесоруб"
-          src="https://www.veseloeradio.ru/vardata/modules/news/files/1/2453/news_file_2453_599fca86a29b4.jpg"
-          width="100%"
-        />
       </FormGroup>
     </form>
   );

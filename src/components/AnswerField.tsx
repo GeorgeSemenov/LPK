@@ -11,8 +11,10 @@ export default function AnswerField({ sumsObj }: { sumsObj: ISumsObj }) {
   return (
     <div>
       {order.map((key) => (
-        <div>
-          <Typography variant="h5">{key}</Typography>
+        <div style={{ marginBottom: "15px" }}>
+          <Typography variant="h5" color={"Highlight"}>
+            {key}
+          </Typography>
           {sumsObj[key].map((numbers) => (
             <Typography>{arrToString(numbers)}</Typography>
           ))}
