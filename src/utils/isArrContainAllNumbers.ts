@@ -1,9 +1,11 @@
 import removeArrElement from "./removeArrElement";
 
 export default function isArrContainAllNumbersInOtherArr(
-  arr: number[],
+  origArr: number[],
   otherArr: number[]
 ): boolean {
+  const arr = [...origArr];
+  removeArrElement(arr, 0);
   const copyOtherArr = [...otherArr];
   for (const numb of arr) {
     if (!copyOtherArr.length) {

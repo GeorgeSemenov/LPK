@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import convertStringToNumbersWithMultypliesArr from "./utils/convertStringToNumbersWithMultypliesArr";
 import convertArrToSumsObj from "./utils/convertArrToSumsObj";
-import convertSumsObjToAnswer from "./utils/convertSumsObjToAnswer";
+import AnswerField from "./components/AnswerField";
 
 function App() {
   const [gilsaInput, setGilsaInput] = useState("");
@@ -19,7 +19,7 @@ function App() {
   const [errorMsg, setErrorMsg] = useState(
     "Данные введены не корректно, проверьте."
   );
-  const [resultMsg, setResultMsg] = useState("");
+  const [sumsObj, setSumsObj] = useState({});
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!gilsaInput.length) {
@@ -40,11 +40,12 @@ function App() {
       gilsaInput,
       showError
     );
-    const sumsObj = convertArrToSumsObj({
-      origArr: numbersArr,
-      limit: +siemInput,
-    });
-    setResultMsg(convertSumsObjToAnswer(sumsObj));
+    setSumsObj(
+      convertArrToSumsObj({
+        origArr: numbersArr,
+        limit: +siemInput,
+      })
+    );
   }
   function showError(msg: string, errorDuration: number = 5) {
     setIsError(true);
@@ -89,7 +90,7 @@ function App() {
         <Typography component={"h3"} textAlign={"center"}>
           Тут ведут расчёт суровые работники лесопромышленной области.
         </Typography>
-        {resultMsg.length && <Typography>{resultMsg}</Typography>}
+        <AnswerField sumsObj={sumsObj} />
         <img
           alt="Знойный лесоруб"
           src="https://www.veseloeradio.ru/vardata/modules/news/files/1/2453/news_file_2453_599fca86a29b4.jpg"

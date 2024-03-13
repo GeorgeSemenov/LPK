@@ -1,4 +1,3 @@
-import arSum from "./arSum";
 import { ISumsObj } from "../interfaces";
 import arrangeArrFromMaxToMin from "./arrangeArrFromMaxToMin";
 import removeSumsWithUsedNumbers from "./removeSumsWithUsedNumbers";
@@ -33,7 +32,9 @@ export default function convertArrToSumsObj(
   ); //суммы объекта отсортированы от большего к меньшему
 
   removeSumsWithUsedNumbers(keys, sumsObj, origArr);
-
+  if (sumsObj[0]) {
+    delete sumsObj[0];
+  } //Никому нафиг не нужны значения, которые приводят к нулю
   return sumsObj;
 }
 

@@ -19,8 +19,16 @@ export default function convertStringToNumbersWithMultypliesArr(
     let number: number, multiplier: number;
     if (numberWithMulitplier.includes(MULTIPLY_SYMBOL)) {
       const numberAndMultiplier = numberWithMulitplier.split(MULTIPLY_SYMBOL);
-      number = returnIfNumberAwareIfNot(numberAndMultiplier[0], showError);
-      multiplier = returnIfNumberAwareIfNot(numberAndMultiplier[1], showError);
+      const firstOperand = returnIfNumberAwareIfNot(
+        numberAndMultiplier[0],
+        showError
+      );
+      const secondOperand = returnIfNumberAwareIfNot(
+        numberAndMultiplier[1],
+        showError
+      );
+      number = Math.max(firstOperand, secondOperand);
+      multiplier = Math.min(firstOperand, secondOperand);
     } else {
       number = returnIfNumberAwareIfNot(numberWithMulitplier, showError);
       multiplier = 1;
