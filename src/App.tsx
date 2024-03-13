@@ -20,7 +20,8 @@ function App() {
     "Данные введены не корректно, проверьте."
   );
   const [resultMsg, setResultMsg] = useState("");
-  function onSubmit() {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     if (!gilsaInput.length) {
       showError("Строка ввода длин гильз пуста.");
       return;
@@ -53,11 +54,7 @@ function App() {
     }, errorDuration * 1000);
   }
   return (
-    <form
-      onSubmit={() => {
-        onSubmit();
-      }}
-    >
+    <form onSubmit={onSubmit}>
       <FormGroup sx={{ padding: "15px" }}>
         {isError && (
           <Typography color="red" fontSize={"2rem"}>

@@ -1,7 +1,9 @@
 import arSum from "./arSum";
 import { ISumsObj } from "../interfaces";
 import arrangeArrFromMaxToMin from "./arrangeArrFromMaxToMin";
-import removeWrongSums from "./removeWrongSums";
+import removeSumsWithUsedNumbers from "./removeSumsWithUsedNumbers";
+import findCombinationsArray from "./findCombinations";
+import removeSumsAboveLimit from "./removeSumsAboveLimit";
 
 export default function convertArrToSumsObj(
   {
@@ -20,63 +22,31 @@ export default function convertArrToSumsObj(
     console.error("error in getArSumsUnderLimits, origArr is empty ");
     return {};
   }
-  const arr: number[] = Object.assign([], origArr);
-  const sumsObj = {};
-  while (arr.length) {
-    getSumsToTheEndOfArr({ origArr: arr, limit, sumsObj });
-    arr.shift();
-  }
+  const arr: number[] = [...origArr];
+  const sumsObj = createRawSumsObj(arr);
+
+  removeSumsAboveLimit(sumsObj, limit);
+
   const keys = arrangeArrFromMaxToMin(
+    //Этот массив нужен, чтобы знать, в каком порядке будут удаляться суммы, в которых используются дублирующие значения
     Object.keys(sumsObj).map((item) => +item)
   ); //суммы объекта отсортированы от большего к меньшему
 
-  removeWrongSums(keys, sumsObj, origArr);
+  removeSumsWithUsedNumbers(keys, sumsObj, origArr);
 
   return sumsObj;
 }
 
-function getSumsToTheEndOfArr(
-  {
-    origArr,
-    sumsObj,
-    limit,
-  }: {
-    origArr: number[];
-    sumsObj: ISumsObj;
-    limit: number;
-  },
-  showErrFunc?: (msg: string, errorDuration?: number) => void
-) {
-  if (!origArr.length) {
-    if (showErrFunc) {
-      showErrFunc("error in getSumsToTheEndOfArr, arr is empty");
+function createRawSumsObj(arr: number[]): ISumsObj {
+  const sumsObj: ISumsObj = {};
+  const combinationsAndSums = findCombinationsArray(arr);
+  combinationsAndSums.forEach((combiSum) => {
+    const sum = combiSum[1];
+    const combination = combiSum[0];
+    if (!sumsObj[sum]) {
+      sumsObj[sum] = [];
     }
-    console.error("error in getSumsToTheEndOfArr, arr is empty");
-    return {};
-  }
-  const arr: number[] = [...origArr];
-  //Мы перебираем основной массив arr - те числа, что уже были проссумированы - переходят в левый массив, те же что ещё не проссумированы - остаются в правом (обычный arr)
-  const leftArr = [];
-
-  while (arr.length) {
-    const leftItem = arr.shift();
-    if (!leftItem) {
-      break;
-    }
-    leftArr.push(leftItem);
-    const leftArrSum = arSum(leftArr);
-    if (leftArrSum > limit) {
-      continue;
-    }
-    for (const numb of arr) {
-      const sum = leftArrSum + numb;
-      if (sum > limit) {
-        continue;
-      }
-      if (!(sum in sumsObj)) {
-        sumsObj[sum] = [];
-      }
-      sumsObj[sum].push([...leftArr, numb]);
-    }
-  }
+    sumsObj[sum].push(combination);
+  });
+  return sumsObj;
 }
