@@ -14,7 +14,7 @@ import AnswerField from "./components/AnswerField";
 
 function App() {
   const [gilsaInput, setGilsaInput] = useState("");
-  const [siemInput, setSiemInput] = useState("8400");
+  const [siemInput, setSiemInput] = useState("6400");
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(
     "Данные введены не корректно, проверьте."
